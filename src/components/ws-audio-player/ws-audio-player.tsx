@@ -25,7 +25,7 @@ export class WSAudioPlayer {
     /**
      * The Track Title
      */
-    @Prop() title: string;
+    @Prop() trackTitle: string;
 
     @Prop({ mutable: true }) duration: string;
     //@Prop({ mutable: true }) curTime: string;
