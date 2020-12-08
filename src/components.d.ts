@@ -22,6 +22,14 @@ export namespace Components {
         "create": () => Promise<void>;
         "duration": string;
         /**
+          * optional external Visualizer Web Component /: Component tag name
+         */
+        "externalVisualizer": string;
+        /**
+          * optional external Visualizer Container :  element selector
+         */
+        "externalVisualizerContainer": string;
+        /**
           * The height of the waveform
          */
         "height": string;
@@ -73,6 +81,14 @@ declare namespace LocalJSX {
          */
         "color"?: string;
         "duration"?: string;
+        /**
+          * optional external Visualizer Web Component /: Component tag name
+         */
+        "externalVisualizer"?: string;
+        /**
+          * optional external Visualizer Container :  element selector
+         */
+        "externalVisualizerContainer"?: string;
         /**
           * The height of the waveform
          */
