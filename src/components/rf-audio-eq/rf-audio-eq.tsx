@@ -1,4 +1,4 @@
-import {Component, Host, h, Prop,Element,State} from '@stencil/core';
+import {Component, Host, h, Prop,Element} from '@stencil/core';
 
 /* Based on this source https://codepen.io/nelsonr/pen/WamzJb*/
 /* forked by retinasfunk:  https://codepen.io/retinafunk/pen/eYdzKKr?editors=1010*/
@@ -115,7 +115,7 @@ export class RfAudioEq {
     this.handleCanplay();
     //this.audio.addEventListener('canplay', ()=>this.handleCanplay());
     this.running = true;
-    this.draw('x');
+    this.draw();
    // this.loadAudio();
   }
 
@@ -132,7 +132,7 @@ export class RfAudioEq {
     this.audio.load();
     this.running = true;
 
-    this.draw('x');
+    this.draw();
   }
 
   handleCanplay() {
@@ -184,7 +184,7 @@ export class RfAudioEq {
     }
   }
 
-  update(dt) {
+  update() {
     let audioIndex, audioValue;
     console.log('update');
 // get the current audio data
@@ -210,12 +210,12 @@ export class RfAudioEq {
     }
   }
 
-  draw(dt) {
+  draw() {
 
-    requestAnimationFrame(()=>{this.draw('x')});
+    requestAnimationFrame(()=>{this.draw()});
 
     if (this.running) {
-      this.update(dt);
+      this.update();
     }
 
     this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);

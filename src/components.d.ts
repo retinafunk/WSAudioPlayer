@@ -33,7 +33,7 @@ export namespace Components {
           * The height of the waveform
          */
         "height": string;
-        "playpause": () => Promise<void>;
+        "playpause": () => Promise<boolean>;
         /**
           * The waveform color
          */

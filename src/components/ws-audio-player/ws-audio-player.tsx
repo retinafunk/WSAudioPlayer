@@ -118,10 +118,11 @@ export class WSAudioPlayer {
       });
     }
 
-    @Method() playpause(){
+     @Method() async  playpause(){
         this.wsPlayer.playPause();
         this.isPlaying  = this.wsPlayer.isPlaying();
         this.curTime = this.getCurrentTime();
+        return true;
         /*window.setInterval(() => {
           this.curTime = this.getCurrentTime();
         }, 1000)*/
