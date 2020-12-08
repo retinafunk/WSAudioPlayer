@@ -1,4 +1,4 @@
-import { Component, Prop, Method, Element, State, Watch } from '@stencil/core';
+import { h,Component, Prop, Method, Element, State, Watch } from '@stencil/core';
 import WaveSurfer from 'wavesurfer.js';
 
 @Component({
