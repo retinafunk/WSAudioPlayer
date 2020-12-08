@@ -41,6 +41,8 @@ export class WSAudioPlayer {
     @State() isPlaying: string;
     @State() curTime: string;
 
+    private isConnectedToVisualizer=false;
+
     @Watch('audio')
     watchHandler(newValue: boolean) {
         this.wsPlayer.load(newValue);
@@ -64,7 +66,8 @@ export class WSAudioPlayer {
             container: container,
             waveColor: this.color,
             progressColor: this.progressColor,
-            height: this.height
+            height: this.height,
+          backend: 'MediaElement'
         });
         if(!this.theme){
           this.themeSetting = 'basic';
@@ -75,7 +78,21 @@ export class WSAudioPlayer {
         this.wsPlayer.on('ready', () =>  {
           this.duration = this.formatTime(this.wsPlayer.getDuration());
           this.curTime = this.formatTime(this.wsPlayer.getCurrentTime());
+          const audioElem =this.el.shadowRoot.querySelector('audio');
+          window['currentAudioElement'] = audioElem;
+          console.log('this.wsPlayer READY! ',audioElem);
         });
+      this.wsPlayer.on('play', (event) =>  {
+        console.log('this.wsPlayer PLAY EVENT ',event);
+        if(this.isConnectedToVisualizer) return;
+        const visualizer = document.createElement('rf-audio-eq');
+        const visualizerContainer= document.querySelector('#visualizer-container') as HTMLElement;
+        visualizerContainer.appendChild(visualizer);
+        this.isConnectedToVisualizer = true;
+      });
+/*        this.wsPlayer.on('audioprocess', (event) =>  {
+          console.log('this.wsPlayer audioprocess EVENT ',event);
+        });*/
         this.isPlaying  = this.wsPlayer.isPlaying();
         this.wsPlayer.on('audioprocess', ()  => {
           this.curTime = this.getCurrentTime();

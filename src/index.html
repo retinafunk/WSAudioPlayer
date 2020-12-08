@@ -18,10 +18,17 @@
 
   body {
     background-color: #202020;
-  }</style>
+  }
+#visualizer-container{
+     height:300px;
+  }
+  </style>
 </head>
 <body>
-<rf-audio-eq audio="assets/Fragment-Paul-Hindemith.mp3">EQ</rf-audio-eq>
+<!--<rf-audio-eq audio="assets/Fragment-Paul-Hindemith.mp3">EQ</rf-audio-eq>-->
+<div id="visualizer-container">
+
+</div>
 <ws-audio-player audio="assets/Style_Creep.mp3" color="red" height="100" progress-color="orangered"
                  theme="light" track-title="Style Creep"></ws-audio-player>
 <button class="track" data-audio="assets/Fragment-Paul-Hindemith.mp3">Track 1</button>

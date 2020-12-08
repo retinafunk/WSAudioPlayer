@@ -103,7 +103,16 @@ export class RfAudioEq {
 
     this.bufferLengthR = this.analyserR.frequencyBinCount;
     this.audioDataArrayR = new Uint8Array(this.bufferLengthR);
-    this.audio = new Audio();
+    if(window['currentAudioElement'] === undefined) {
+      this.audio = new Audio();
+    } else{
+      this.audio = window['currentAudioElement'];
+    }
+    console.log('this.audio',this.audio);
+    this.handleCanplay();
+    //this.audio.addEventListener('canplay', ()=>this.handleCanplay());
+    this.running = true;
+    this.draw('x');
    // this.loadAudio();
   }
 
@@ -113,6 +122,7 @@ export class RfAudioEq {
     this.audio.loop = false;
     this.audio.autoplay = false;
     this.audio.crossOrigin = "anonymous";
+   // this.audio.volume = 0.01;
 
     this.audio.addEventListener('canplay', ()=>this.handleCanplay());
     this.audio.src = "https://s3.eu-west-2.amazonaws.com/nelsoncodepen/Audiobinger_-_The_Garden_State.mp3";
@@ -128,6 +138,7 @@ export class RfAudioEq {
     const source = this.audioContext.createMediaElementSource(this.audio);
     source.connect(this.splitter);
     this.splitter.connect(this.audioContext.destination);
+    console.log('handleCanplay');
   }
 
   toggleAudio() {
@@ -172,7 +183,7 @@ export class RfAudioEq {
 
   update(dt) {
     let audioIndex, audioValue;
-
+    console.log('update');
 // get the current audio data
     this.analyserL.getByteFrequencyData(this.audioDataArrayL);
     this.analyserR.getByteFrequencyData(this.audioDataArrayR);
