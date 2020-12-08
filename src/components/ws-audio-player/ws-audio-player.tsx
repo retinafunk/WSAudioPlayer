@@ -17,6 +17,11 @@ export class WSAudioPlayer {
    */
     @Prop() color: string;
 
+    /**
+   * The waveform color
+   */
+    @Prop() progressColor: string;
+
   /**
    * The player theme
    */
