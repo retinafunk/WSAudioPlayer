@@ -44,8 +44,11 @@ export class RfAudioEq {
     this.canvas.addEventListener('click', ()=>this.toggleAudio());
     this.canvasContext = this.canvas['getContext']("2d");
 
-    this.canvas['width'] = document.body.clientWidth;
-    this.canvas['height'] = document.body.clientHeight;
+/*    this.canvas['width'] = document.body.clientWidth;
+    this.canvas['height'] = document.body.clientHeight;*/
+
+    this.canvas['width'] = this.el.parentElement.clientWidth;
+    this.canvas['height'] = this.el.parentElement.clientHeight;
 
     this.centerX = this.canvas['width'] / 2;
     this.centerY = this.canvas['height'] / 2;
