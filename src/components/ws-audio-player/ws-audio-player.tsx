@@ -125,7 +125,7 @@ export class WSAudioPlayer {
 
         return <div class={'wsap-container '+this.themeSetting}>
           <div class="player-header">
-            <div class="title"><h3>{this.title}</h3></div>
+            <div class="title"><h3>{this.trackTitle}</h3></div>
             <div class="current-time">
               {this.curTime}
             </div>
