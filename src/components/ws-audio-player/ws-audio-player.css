@@ -1,7 +1,21 @@
+
+:host{
+  --ws-audioplayer-border-color : black;
+  --ws-audioplayer-bg-color : transparent;
+  --ws-audioplayer-header-bg-color : #999;
+  --ws-audioplayer-text-color : white;
+  --ws-audioplayer-playbutton-color : black;
+  --ws-audioplayer-playbutton-active-color : grey;
+  --ws-audioplayer-playbutton-bg-color : #999;
+  --ws-audioplayer-round-corners : 10px;
+}
+
 .wsap-container {
     max-width:600px;
-    border:1px solid black;
+    border:1px solid var(--ws-audioplayer-border-color,black);
+    border-radius: var( --ws-audioplayer-round-corners,0);
     overflow: hidden;
+    background-color: var(--ws-audioplayer-bg-color,transparent);
 }
 .wsap-container .title {
     flex:100%;
@@ -29,16 +43,16 @@ button.play-pause:active {
   width:100%;
   margin-bottom:10px;
   display:flex;
-  background:#d4d4d4;
-  color: black;
+  background:var(--ws-audioplayer-header-bg-color,grey);
+  color: var(--ws-audioplayer-text-color,black);
   line-height: 40px;
   font-family: sans-serif;
   font-weight: bold;
-  border:1px solid black;
+  border:1px solid var(--ws-audioplayer-border-color,black);
 }
 .current-time, .total-time {
   padding: 0 10px;
-  outline: 1px solid black;
+  outline: 1px solid var(--ws-audioplayer-border-color,black);
 }
 .title {
     padding: 0 20px;
@@ -53,7 +67,7 @@ button.play-pause {
     width: 102px;
     position: relative;
     border-style:initial;
-    background:#d4d4d4;
+    background-color: var(--ws-audioplayer-playbutton-bg-color,grey);
 }
 .player-main {
   display:flex;
@@ -64,14 +78,12 @@ button.play-pause {
     margin-left: auto;
     margin-right: auto;
     transform: scale(.6);
-
     border: 0;
     background: transparent;
     box-sizing: border-box;
     width: 0;
     height: 74px;
-
-    border-color: transparent transparent transparent #202020;
+    border-color: transparent transparent transparent var(--ws-audioplayer-playbutton-color,#202020);
     transition: 100ms all ease;
     cursor: pointer;
 
@@ -84,18 +96,13 @@ button.play-pause {
     border-width: 0px 0 0px 60px;
 }
 .symbol:hover {
-    border-color: transparent transparent transparent #404040;
+    border-color: transparent transparent transparent var(--ws-audioplayer-playbutton-active-color,#404040);
 }
 
 /* Dark Theme */
 .wsap-container.dark {
-  background:#202020;
-}
-.wsap-container.dark .player-header {
-  border: 1px solid #4f4f4f;
-  color: #f3f3f3;
-  background:#3b3b3b;
-}
-.dark .current-time, .dark .total-time {
-  outline:1px solid #4f4f4f;
+  --ws-audioplayer-bg-color : #202020;
+  --ws-audioplayer-border-color: #4f4f4;
+  --ws-audioplayer-text-color: #f3f3f3;
+  --ws-audioplayer-header-bg-color : #333;
 }
