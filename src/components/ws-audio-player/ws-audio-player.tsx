@@ -32,6 +32,16 @@ export class WSAudioPlayer {
      */
     @Prop() trackTitle: string;
 
+    /**
+     *  optional external Visualizer Web Component /: Component tag name
+     */
+    @Prop() externalVisualizer: string;
+  /**
+   *  optional external Visualizer Container :  element selector
+   */
+    @Prop() externalVisualizerContainer: string;
+
+
     @Prop({ mutable: true }) duration: string;
     //@Prop({ mutable: true }) curTime: string;
 
