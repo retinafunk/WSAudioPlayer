@@ -51,14 +51,14 @@ export class WSAudioPlayer {
     public wsPlayer;
     public themeSetting;
 
-    @Method() create(){
+    @Method() async create(){
         let ws = WaveSurfer;
         //let player = this;
         let container = this.el.shadowRoot.querySelector('#wavesurfer');
         this.wsPlayer = ws.create({
             container: container,
             waveColor: this.color,
-            progressColor: '#666666',
+            progressColor: this.progressColor,
             height: this.height
         });
         if(!this.theme){
