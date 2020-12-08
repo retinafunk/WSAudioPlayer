@@ -1,15 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
-  <script src="/build/wsaudioplayer.js"></script>
+  <script data-stencil src="/build/wsaudioplayer.esm.js" type="module"></script>
+  <script data-stencil nomodule="" src="/build/wsaudioplayer.js"></script>
+  <style>ws-audio-player {
+    --ws-audioplayer-border-color: red;
+    --ws-audioplayer-bg-color: orange;
+    --ws-audioplayer-header-bg-color: orangered;
+    --ws-audioplayer-text-color: white;
+    --ws-audioplayer-playbutton-color: red;
+    --ws-audioplayer-playbutton-bg-color: yellow;
+    --ws-audioplayer-round-corners: 10px;
+  }
 
+  body {
+    background-color: #202020;
+  }</style>
 </head>
 <body>
+<rf-audio-eq audio="assets/Fragment-Paul-Hindemith.mp3">EQ</rf-audio-eq>
+<ws-audio-player audio="assets/Style_Creep.mp3" color="red" height="100" progress-color="orangered"
+                 theme="light" track-title="Style Creep"></ws-audio-player>
+<button class="track" data-audio="assets/Fragment-Paul-Hindemith.mp3">Track 1</button>
+<button class="track" data-audio="assets/Lieblingsplätzchen_FelixMendelssohnBartholdy_Comp.mp3">Track 2</button>
+<script>
+  const player = document.querySelector('ws-audio-player');
+  const tracks = document.querySelectorAll('.track');
+  tracks.forEach(track => {
+    track.addEventListener('click', (event) => {
+      const audioData = event.target.getAttribute('data-audio');
+      player.audio = audioData;
 
-  <ws-audio-player audio="assets/Style_Creep.mp3" theme="dark" title="Style Creep" color="white" height="100"></ws-audio-player>
-
+      setTimeout(() => {
+        player.playpause();
+      }, 1000);
+    });
+  });
+</script>
+<script>
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    // auto-unregister service worker during dev mode
+    navigator.serviceWorker.getRegistration().then(function (registration) {
+      if (registration) {
+        registration.unregister().then(function () {
+          location.reload(true)
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
