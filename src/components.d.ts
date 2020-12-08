@@ -27,6 +27,10 @@ export namespace Components {
         "height": string;
         "playpause": () => Promise<void>;
         /**
+          * The waveform color
+         */
+        "progressColor": string;
+        /**
           * The player theme
          */
         "theme": string;
@@ -73,6 +77,10 @@ declare namespace LocalJSX {
           * The height of the waveform
          */
         "height"?: string;
+        /**
+          * The waveform color
+         */
+        "progressColor"?: string;
         /**
           * The player theme
          */
