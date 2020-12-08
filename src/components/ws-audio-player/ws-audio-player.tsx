@@ -85,21 +85,27 @@ export class WSAudioPlayer {
           this.themeSetting = this.theme;
         }
         this.wsPlayer.load(this.audio);
+
         this.wsPlayer.on('ready', () =>  {
           this.duration = this.formatTime(this.wsPlayer.getDuration());
           this.curTime = this.formatTime(this.wsPlayer.getCurrentTime());
+
+          // save a global ref to audio element so visualizer can access it !
           const audioElem =this.el.shadowRoot.querySelector('audio');
           window['currentAudioElement'] = audioElem;
-          console.log('this.wsPlayer READY! ',audioElem);
         });
-      this.wsPlayer.on('play', (event) =>  {
-        console.log('this.wsPlayer PLAY EVENT ',event);
-        if(this.isConnectedToVisualizer) return;
-        const visualizer = document.createElement('rf-audio-eq');
-        const visualizerContainer= document.querySelector('#visualizer-container') as HTMLElement;
-        visualizerContainer.appendChild(visualizer);
-        this.isConnectedToVisualizer = true;
-      });
+        if(this.externalVisualizer && this.externalVisualizerContainer){
+          this.wsPlayer.on('play', (event) =>  {
+            console.log('this.wsPlayer PLAY EVENT ',event);
+            if(this.isConnectedToVisualizer) return;
+            const visualizer = document.createElement('rf-audio-eq');
+            const visualizerContainer= document.querySelector('#visualizer-container') as HTMLElement;
+            visualizer.color = 'yellow';
+            visualizerContainer.appendChild(visualizer);
+            this.isConnectedToVisualizer = true;
+          });
+        }
+
 /*        this.wsPlayer.on('audioprocess', (event) =>  {
           console.log('this.wsPlayer audioprocess EVENT ',event);
         });*/
