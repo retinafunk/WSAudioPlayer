@@ -95,12 +95,17 @@ export class WSAudioPlayer {
           window['currentAudioElement'] = audioElem;
         });
         if(this.externalVisualizer && this.externalVisualizerContainer){
-          this.wsPlayer.on('play', (event) =>  {
+          this.wsPlayer.on('play', () =>  {
             console.log('this.wsPlayer PLAY EVENT ',event);
-            if(this.isConnectedToVisualizer) return;
+            console.log('this.isConnectedToVisualizer ',this.isConnectedToVisualizer);
+            const visualizerContainer = document.querySelector('#visualizer-container') as HTMLElement;
+            if(this.isConnectedToVisualizer) {
+              const eqNode = document.querySelector('rf-audio-eq');
+              visualizerContainer.removeChild(eqNode)
+            }
             const visualizer = document.createElement('rf-audio-eq');
-            const visualizerContainer= document.querySelector('#visualizer-container') as HTMLElement;
-            visualizer.color = 'yellow';
+
+            visualizer.color = this.color;
             visualizerContainer.appendChild(visualizer);
             this.isConnectedToVisualizer = true;
           });
