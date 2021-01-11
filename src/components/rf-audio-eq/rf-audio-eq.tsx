@@ -141,11 +141,11 @@ export class RfAudioEq {
     const source = this.audioContext.createMediaElementSource(this.audio);
     source.connect(this.splitter);
     this.splitter.connect(this.audioContext.destination);
-    console.log('handleCanplay');
+  //  console.log('handleCanplay');
   }
 
   toggleAudio() {
-    console.log('toggleAudio()',this.running);
+  //  console.log('toggleAudio()',this.running);
     if (this.running === false) {
       this.loadAudio();
       return;
@@ -186,7 +186,7 @@ export class RfAudioEq {
 
   update() {
     let audioIndex, audioValue;
-    console.log('update');
+ //   console.log('update');
 // get the current audio data
     this.analyserL.getByteFrequencyData(this.audioDataArrayL);
     this.analyserR.getByteFrequencyData(this.audioDataArrayR);
@@ -228,7 +228,7 @@ export class RfAudioEq {
   componentDidRender(){
     this.setupVisualizer();
     this.setupAudio();
-    console.log({test:this.audioContext});
+  //  console.log({test:this.audioContext});
   }
 
   render() {
